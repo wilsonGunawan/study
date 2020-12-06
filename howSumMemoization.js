@@ -5,13 +5,15 @@ const howSum = (targetSum, numbers, memo = {}) => {
   for (let num of numbers) {
     const remainder = targetSum - num
     const remainderResult = howSum(remainder, numbers, memo)
+    memo[remainder] = remainderResult
     if (!!remainderResult) {
-      memo[remainder] = [...remainderResult, num]
-      return memo[remainder]
+      return [...remainderResult, num]
     }
   }
   memo[targetSum] = null
   return null
 }
 
-console.log(howSum(70, [2, 3]))
+let memo = {}
+console.log(howSum(10, [2, 3], memo))
+console.log(memo)
