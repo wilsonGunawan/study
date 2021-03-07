@@ -7,7 +7,7 @@ const canSum = (targetSum, numbers, memo = {}) => {
     if (remainder >= 0) {
       const remainderResult = canSum(remainder, numbers, memo)
       if (remainderResult === true) {
-        memo[remainderResult] = true
+        memo[remainder] = true
         return true
       }
     }
