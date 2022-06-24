@@ -1,22 +1,17 @@
 const isPalindrome = (n) => {
-    let temp = n
-    let num = n
-    let multipliers = 1
-    let dup = 0
-    while (n > 1) {
+    if (n < 0 || (n % 10 === 0 && n !== 0)) {
+        return false
+    }
+
+    let revertedNumber = 0
+    while (n > revertedNumber) {
+        revertedNumber = parseInt(revertedNumber * 10 + n % 10)
         n = parseInt(n / 10)
-        if (n >= 1) {
-            multipliers *= 10
-        }
     }
-    while (temp >= 1) {
-        const remainder = parseInt(temp % 10)
-        temp = parseInt(temp / 10)
-        dup += remainder * multipliers
-        multipliers /= 10
-    }
-    return num == dup
+
+    return n === revertedNumber || n === revertedNumber / 10
 }
 
 console.log(isPalindrome(789))
 console.log(isPalindrome(10001))
+console.log(isPalindrome(1001))
